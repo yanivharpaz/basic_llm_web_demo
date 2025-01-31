@@ -11,6 +11,7 @@ CORS(app)
 
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
+
 @app.route('/api/chat', methods=['POST'])
 def chat():
     try:
@@ -18,7 +19,7 @@ def chat():
         message = data.get('message')
         
         response = openai.ChatCompletion.create(
-            model="gpt-4o-mini",
+            model="gpt-4o-2024-08-06",
             messages=[
                 {"role": "user", "content": message}
             ]
