@@ -1,10 +1,11 @@
-FROM node:16-alpine
+FROM node:16.14-alpine
 
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm cache clean --force && \
-    npm install --legacy-peer-deps --force
+
+# Clean install with specific flags
+RUN npm install --legacy-peer-deps --no-optional
 
 COPY . .
 
