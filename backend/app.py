@@ -18,12 +18,21 @@ def chat():
         data = request.json
         message = data.get('message')
         
+
         response = openai.ChatCompletion.create(
-            model="gpt-4o-2024-08-06",
+            model="gpt-4o",
             messages=[
+                {"role": "system", "content": "You are a chatbot based on GPT-4o."},
                 {"role": "user", "content": message}
-            ]
-        )
+    ]
+)
+
+        # response = openai.ChatCompletion.create(
+        #     model="gpt-4o-2024-08-06",
+        #     messages=[
+        #         {"role": "user", "content": message}
+        #     ]
+        # )
         
         return jsonify({
             "response": response.choices[0].message.content
