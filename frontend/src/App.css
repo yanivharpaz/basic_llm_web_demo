@@ -12,14 +12,18 @@
 
 .App-header h1 {
   color: #D4B483;  /* Camel color for header */
-  position: relative;
   display: inline-block;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 5px 10px;
 }
 
-.App-header h1::before {
+.title-char {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0 1px;  /* Add some spacing between characters */
+}
+
+.title-char::before {
   content: '';
   position: absolute;
   width: 100%;
@@ -32,13 +36,13 @@
   transition: all 0.3s ease-in-out;
 }
 
-.App-header h1:hover {
+.title-char:hover {
   color: #F5E6D3;  /* Light camel */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.2);  /* Added scale for more emphasis */
 }
 
-.App-header h1:hover::before {
+.title-char:hover::before {
   visibility: visible;
   transform: scaleX(1);
 }
