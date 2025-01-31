@@ -1,37 +1,54 @@
 .App {
   text-align: center;
   padding: 20px;
+  background-color: #2C2620;  /* Dark brown background */
+  min-height: 100vh;
+  color: #E5D3B3;  /* Light camel text */
+}
+
+.App-header {
+  margin-bottom: 30px;
+}
+
+.App-header h1 {
+  color: #D4B483;  /* Camel color for header */
 }
 
 .chat-container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  background-color: #3A332D;  /* Slightly lighter dark brown */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .messages {
   height: 400px;
   overflow-y: auto;
-  border: 1px solid #ccc;
+  border: 1px solid #5C4D3C;  /* Dark camel border */
   margin-bottom: 20px;
   padding: 10px;
+  border-radius: 8px;
+  background-color: #2C2620;  /* Dark brown */
 }
 
 .message {
   margin: 10px;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 15px;
+  border-radius: 8px;
   max-width: 70%;
 }
 
 .user {
-  background-color: #007bff;
-  color: white;
+  background-color: #8B7355;  /* Darker camel for user messages */
+  color: #F5E6D3;  /* Light camel text */
   margin-left: auto;
 }
 
 .bot {
-  background-color: #f8f9fa;
+  background-color: #4A3F35;  /* Dark brown for bot messages */
+  color: #E5D3B3;  /* Light camel text */
   margin-right: auto;
   text-align: left;
 }
@@ -43,20 +60,54 @@ form {
 
 input {
   flex-grow: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 12px;
+  border: 1px solid #8B7355;  /* Darker camel border */
+  border-radius: 8px;
+  background-color: #2C2620;  /* Dark brown */
+  color: #E5D3B3;  /* Light camel text */
+}
+
+input:focus {
+  outline: none;
+  border-color: #D4B483;  /* Camel color when focused */
+  box-shadow: 0 0 5px rgba(212, 180, 131, 0.5);
 }
 
 button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
+  padding: 12px 25px;
+  background-color: #D4B483;  /* Camel color */
+  color: #2C2620;  /* Dark brown text */
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #C1A173;  /* Slightly darker camel on hover */
 }
 
 button:disabled {
-  background-color: #ccc;
+  background-color: #5C4D3C;  /* Dark camel when disabled */
+  color: #8B7355;  /* Darker camel text when disabled */
+  cursor: not-allowed;
+}
+
+/* Custom scrollbar for webkit browsers */
+.messages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: #2C2620;  /* Dark brown */
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background: #8B7355;  /* Darker camel */
+  border-radius: 4px;
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+  background: #D4B483;  /* Camel color on hover */
 }

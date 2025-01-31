@@ -15,6 +15,7 @@ function Chat() {
     setIsLoading(true);
 
     try {
+      console.log('Sending request to backend...');
       const response = await fetch('http://localhost:5000/api/chat', {
         method: 'POST',
         headers: {
@@ -24,10 +25,17 @@ function Chat() {
       });
 
       const data = await response.json();
-      setMessages(prev => [...prev, { text: data.response, isUser: false }]);
+      console.log('Received response:', data);
+
+      if (data.error) {
+        console.error('Error from API:', data.error);
+        setMessages(prev => [...prev, { text: `Error: ${data.error}`, isUser: false }]);
+      } else {
+        setMessages(prev => [...prev, { text: data.response, isUser: false }]);
+      }
     } catch (error) {
-      console.error('Error:', error);
-      setMessages(prev => [...prev, { text: 'Error: Could not get response', isUser: false }]);
+      console.error('Network error:', error);
+      setMessages(prev => [...prev, { text: 'Error: Could not get response from server', isUser: false }]);
     }
 
     setIsLoading(false);
@@ -36,12 +44,17 @@ function Chat() {
   return (
     <div className="chat-container">
       <div className="messages">
-        {messages.map((message, index) => (
-          <div key={index} className={`message ${message.isUser ? 'user' : 'bot'}`}>
-            {message.text}
-          </div>
-        ))}
-        {isLoading && <div className="message bot">Thinking...</div>}
+        {messages.length === 0 ? (
+          <div className="message bot">Start a conversation...</div>
+        ) : (
+          messages.map((message, index) => (
+            <div key={index} className={`message ${message.isUser ? 'user' : 'bot'}`}>
+              <strong>{message.isUser ? 'You: ' : 'AI: '}</strong>
+              {message.text}
+            </div>
+          ))
+        )}
+        {isLoading && <div className="message bot">AI is thinking...</div>}
       </div>
       <form onSubmit={handleSubmit}>
         <input
@@ -51,7 +64,9 @@ function Chat() {
           placeholder="Type your message..."
           disabled={isLoading}
         />
-        <button type="submit" disabled={isLoading}>Send</button>
+        <button type="submit" disabled={isLoading || !input.trim()}>
+          {isLoading ? 'Sending...' : 'Send'}
+        </button>
       </form>
     </div>
   );
