@@ -2,13 +2,12 @@ FROM node:16.14-alpine
 
 WORKDIR /app
 
-# Install chokidar globally
-RUN npm install -g chokidar
-
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install --legacy-peer-deps
+# Install dependencies in a specific order
+RUN npm install watchpack-chokidar2 && \
+    npm install chokidar && \
+    npm install --legacy-peer-deps
 
 COPY . .
 
