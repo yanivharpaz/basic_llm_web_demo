@@ -4,6 +4,7 @@ import openai
 import os
 from dotenv import load_dotenv
 from vector_store import VectorStore
+from rag_data import RAGData
 
 load_dotenv()
 
@@ -14,13 +15,15 @@ openai.api_key = os.getenv('OPENAI_API_KEY')
 vector_store = VectorStore()
 
 # Initialize with some example texts
-example_texts = [
-    "Insurance policies provide financial protection against various risks.",
-    "Life insurance helps protect your family's financial future.",
-    "Health insurance covers medical expenses and healthcare costs.",
-    "Property insurance protects against damage to physical assets.",
-    "Auto insurance provides coverage for vehicle-related incidents."
-]
+# example_texts = [
+#     "Insurance policies provide financial protection against various risks.",
+#     "Life insurance helps protect your family's financial future.",
+#     "Health insurance covers medical expenses and healthcare costs.",
+#     "Property insurance protects against damage to physical assets.",
+#     "Auto insurance provides coverage for vehicle-related incidents."
+# ]
+
+example_texts = RAGData().example_texts
 vector_store.add_texts(example_texts)
 
 @app.route('/api/chat', methods=['POST'])

@@ -3,7 +3,7 @@ import Chat from './components/Chat';
 import './App.css';
 
 function App() {
-  const title = "Innovation | hub | Israel |-|-| AI | Chat | demo | for | Insurance";
+  const title = "[Innovation][hub][Israel][Demo]";
   
   return (
     <div className="App">
