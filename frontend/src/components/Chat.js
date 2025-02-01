@@ -32,7 +32,11 @@ function Chat() {
         console.error('Error from API:', data.error);
         setMessages(prev => [...prev, { text: `Error: ${data.error}`, isUser: false }]);
       } else {
-        setMessages(prev => [...prev, { text: data.response, isUser: false }]);
+        setMessages(prev => [...prev, { 
+          text: data.response, 
+          isUser: false,
+          context: data.context_used 
+        }]);
       }
     } catch (error) {
       console.error('Network error:', error);
@@ -53,6 +57,16 @@ function Chat() {
             <div key={index} className={`message ${message.isUser ? 'user' : 'bot'}`}>
               <strong>{message.isUser ? 'You: ' : 'AI: '}</strong>
               {message.text}
+              {message.context && (
+                <div className="context-info">
+                  <small>
+                    <strong>Based on: </strong>
+                    {message.context.map((ctx, i) => (
+                      <div key={i} className="context-item">{ctx}</div>
+                    ))}
+                  </small>
+                </div>
+              )}
             </div>
           ))
         )}
