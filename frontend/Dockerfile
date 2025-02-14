@@ -6,7 +6,10 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install --legacy-peer-deps
+# RUN npm install --legacy-peer-deps
+RUN npm install --legacy-peer-deps && \
+    npm install --save-dev @babel/core@latest
+
 
 # Copy source files
 COPY . .
